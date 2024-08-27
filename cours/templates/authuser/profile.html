@@ -1,0 +1,130 @@
+{% extends 'menu/base.html' %}
+
+{% load static %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+
+{% include 'menu/navbar.html' %}
+<br><br><br><br>
+
+<main class="profile-page layout layout--3">
+    <div class="container">
+      <!-- Topics Start -->
+    
+    <div class="topics">
+        <div class="topics__header">
+            <h2>Parcourir vos sujects</h2>
+        </div>
+        <ul class="topics__list">
+          <li>
+              <a href="" class="active">Tous <span></span></a>
+          </li>
+          
+          <li>
+              <a href=""><span></span></a>
+          </li>
+          
+  
+      </ul>
+        <a class="btn btn--link" href="">
+            More
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+                <title>chevron-down</title>
+                <path d="M16 21l-13-13h-3l16 16 16-16h-3l-13 13z"></path>
+            </svg>
+        </a>
+    </div>
+      <!-- Topics End -->
+  
+      <!-- Room List Start -->
+      <div class="roomList">
+        <div class="profile">
+          <div class="profile__avatar">
+            <div class="avatar avatar--large active">
+              <img src="{% static 'images/avatar.png' %}" />
+            </div>
+          </div>
+          <div class="profile__info">
+            <h3>{{user.username}}</h3>
+            <p>@{{user.username}}</p>
+            
+            <a href="" class="btn btn--main btn--pill">Modifier Profile</a>
+            
+          </div>
+          <div class="profile__about">
+            <h3>A propos</h3>
+            <p>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magnam, adipisci.
+            </p>
+          </div>
+        </div>
+  
+        <div class="roomList__header">
+          <div>
+            <h2>salle d'etude de {{user.username}}</a>
+            </h2>
+          </div>
+        </div>
+        <!-- feed-comportement -->
+        {% include 'menu/feed.html' %}
+        <!-- end feed -->
+        
+  
+  
+      </div>
+      <!-- Room List End -->
+  
+      <!-- Activities Start -->
+
+    
+    
+      <div class="activities">
+        <div class="activities__header">
+            <h2>Activites Recents</h2>
+        </div>
+        
+        <div class="activities__box">
+            <div class="activities__boxHeader roomListRoom__header">
+                <a href="" class="roomListRoom__author">
+                    <div class="avatar avatar--small">
+                        <img src="{% static 'images/avatar.png' %}" />
+                    </div>
+                    <p>
+                        
+                        <span> </span>
+                        
+                    </p>
+                </a>
+    
+                
+                <div class="roomListRoom__actions">
+                  
+                    <a href="">
+                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+                            <title>supprimer</title>
+                            <path
+                                d="M27.314 6.019l-1.333-1.333-9.98 9.981-9.981-9.981-1.333 1.333 9.981 9.981-9.981 9.98 1.333 1.333 9.981-9.98 9.98 9.98 1.333-1.333-9.98-9.98 9.98-9.981z">
+                            </path>
+                        </svg>
+                    </a>
+                    
+                </div>
+                
+    
+            </div>
+            <div class="activities__boxContent">
+                <p>A repondue a ”<a href=""></a>”</p>
+                <div class="activities__boxRoomContent"></div>
+            </div>
+        </div>
+        
+        
+    
+    </div>
+  
+      <!-- Activities End -->
+    </div>
+  </main>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% load static %}
+
+<!-- menu -->
+<nav>
+    <div class="containers">
+        <h1 class="logo"><a href="{% url 'accueil' %}" class="text-light">WorkFlow</a></h1>
+        <form action="{% url 'accueil' %}" method="GET">
+            <div class="search-bar">
+                <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <input type="text" name="q" placeholder="recherche un suject ...">
+            </div>
+        </form>
+        <div class="create">
+            <div class="profile-photo">
+                <a href=""><img src="{% static 'images/avatar.png' %}" alt=""></a>
+            </div>
+    
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  {{request.user.username}}
+                </button>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                 
+                  {% if request.user.is_authenticated %}
+                  <li><a class="dropdown-item active" href="">Profile</a></li>
+                  <li><a class="dropdown-item" href="">Deconnexion</a></li>
+                  {% else %}
+                  <li><a class="dropdown-item" href="Connexion</a></li>
+                  {% endif %}
+                  
+    
+                </ul>
+              </div>
+        </div>
+    </div>
+       
+    </nav>
