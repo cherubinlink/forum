@@ -23,9 +23,10 @@
                  
                   {% if request.user.is_authenticated %}
                   <li><a class="dropdown-item active" href="">Profile</a></li>
-                  <li><a class="dropdown-item" href="">Deconnexion</a></li>
+                  <li><a class="dropdown-item" href="{% url 'logout-user' %}">Deconnexion</a></li>
                   {% else %}
-                  <li><a class="dropdown-item" href="Connexion</a></li>
+                  <li><a class="dropdown-item" href="{% url 'login' %}">Se connecter</a></li>
+                  <li><a class="dropdown-item" href="{% url 'register' %}">Inscription</a></li>
                   {% endif %}
                   
     

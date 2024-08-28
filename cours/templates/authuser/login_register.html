@@ -10,7 +10,7 @@
 
 <main class="auth layout">
 
-   
+   {% if page == 'login' %}
     <div class="container">
       <div class="layout__box">
         <div class="layout__boxHeader">
@@ -18,18 +18,30 @@
             <h3>Connexion</h3>
           </div>
         </div>
+
+        {% if messages %}
+        {% for message in messages %}
+          <div class="alert alert-{% if message.tags %}{{ message.tags }}{% else %}info{% endif %} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        {% endfor %}
+      {% endif %}
+
         <div class="layout__body">
           <h2 class="auth__tagline">Trouver un partenaire d'etude</h2>
   
           <form class="form" action="" method="POST">
-            
+            {% csrf_token %}
             <div class="form__group form__group">
               <label for="room_name">Email</label>
               <input id="username" name="email" type="email" placeholder=" entrer votre noms" />
             </div>
             <div class="form__group">
               <label for="password">Password</label>
-              <input id="password" name="password" type="password"
+              <input id="password" name="password1" type="password"
                 placeholder="password" />
             </div>
   
@@ -50,14 +62,14 @@
   
           <div class="auth__action">
             <p>Avez-vous deja un compte?</p>
-            <a href="" class="btn btn--link">Compte</a>
+            <a href="{% url 'register' %}" class="btn btn--link">Compte</a>
           </div>
         </div>
       </div>
     </div>
     
-    
-    <br><br><br><br>
+    {% else %}
+    <br><br><br><br><br>
     <div class="container">
       <div class="layout__box">
         <div class="layout__boxHeader">
@@ -65,18 +77,45 @@
             <h3>Creer un compte</h3>
           </div>
         </div>
+
+        {% if messages %}
+        {% for message in messages %}
+          <div class="alert alert-{% if message.tags %}{{ message.tags }}{% else %}info{% endif %} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        {% endfor %}
+      {% endif %}
+
         <div class="layout__body">
           <h2 class="auth__tagline">Trouver un partenaire d'etude</h2>
   
           <form class="form" action="" method="POST">
             
-           
-            <div class="form__group">
-              <label for="password"></label>
-              
-              
-            </div>
-            
+           {% csrf_token %}
+
+
+           <div class="form__group">
+            <label for="password">Noms</label>
+            <input id="password" name="username" type="text" placeholder="entrer votre noms" />
+          </div>
+
+           <div class="form__group form__group">
+            <label for="room_name">Email</label>
+            <input id="username" name="email" type="email" placeholder=" entrer votre email" />
+          </div>
+         
+          <div class="form__group">
+            <label for="password">Mot de pass</label>
+            <input id="password" name="password1" type="password" placeholder="entrer votre mot pass" />
+          </div>
+
+          <div class="form__group">
+            <label for="password">Confirm mot de pass</label>
+            <input id="password" name="password2" type="password" placeholder="confirm le mot de pass" />
+          </div>
             
   
   
@@ -97,13 +136,13 @@
   
           <div class="auth__action">
             <p>Votre compte exite deja?</p>
-            <a href="" class="btn btn--link">Connexion</a>
+            <a href="{% url 'login' %}" class="btn btn--link">Connexion</a>
           </div>
         </div>
       </div>
     </div>
     
-    
+    {% endif %}
   </main>
 
 {% endblock %}
