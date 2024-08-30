@@ -11,7 +11,7 @@ urlpatterns = [
     path('logout',views.logout_user,name='logout-user'),
     
     # profile
-    path('profile',views.profile,name='profile'),
+    path('profile/<int:pk>/',views.profile,name='profile'),
     
     
     # modifier le profile

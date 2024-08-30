@@ -8,7 +8,7 @@ class UserForm(ModelForm):
     email = forms.EmailField(widget=forms.EmailInput(attrs={'class':'form-control'}))
     class Meta:
         model = User
-        fields = ['username', 'email']
+        fields = ['username', 'email','bio','localisation','avatar']
 
 
 

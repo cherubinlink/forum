@@ -1,22 +1,22 @@
 {% load static %}
 
-
+{% for doc in document %}
 <div class="roomListRoom">
     <div class="roomListRoom__header">
-        <a href="" class="roomListRoom__author">
+        <a href="{% url 'profile' doc.auteur.id %}" class="roomListRoom__author">
             <div class="avatar avatar--small">
-                <img src="{% static 'images/avatar.png' %}" />
+                <img src="{{user.doc.avatar.url}}" />
             </div>
-            <span></span>
+            <span>{{doc.auteur.username}}</span>
         </a>
         <div class="roomListRoom__actions">
             <span>
-                passés <br>
+                {{doc.creer_doc|timesince}} passés <br>
             </span>
         </div>
     </div>
     <div class="roomListRoom__content">
-        <a href=""></a>
+        <a href="{% url 'document' doc.id %}">{{doc.noms_doc}}</a>
     </div>
     <div class="roomListRoom__meta">
         <a href="" class="roomListRoom__joined">
@@ -35,13 +35,18 @@
                     d="M12 16c3.859 0 7-3.141 7-7s-3.141-7-7-7c-3.859 0-7 3.141-7 7s3.141 7 7 7zM12 4c2.757 0 5 2.243 5 5s-2.243 5-5 5-5-2.243-5-5c0-2.757 2.243-5 5-5z">
                 </path>
             </svg>
-           
+            {% if doc.participant.all.count == 1 %}
+            {{doc.participant.all.count}} participant
+            {% else %}
+            {{doc.participant.all.count}} Participants
+            {% endif %}
         </a>
-        <p class="roomListRoom__topic"></p>
+        <p class="roomListRoom__topic">{{doc.suject.noms_suj}}</p>
     </div>
-    {% if doc.ecrivain == request.user %}
+    {% if doc.auteur == request.user %}
     <a href=""><i class="fa-regular fa-pen-to-square"></i></a>
     <a href=""><i class="fa-solid fa-trash"></i></a>
     {% endif %}
 </div>
+{% endfor %}
 

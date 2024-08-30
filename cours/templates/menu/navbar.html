@@ -12,7 +12,7 @@
         </form>
         <div class="create">
             <div class="profile-photo">
-                <a href=""><img src="{% static 'images/avatar.png' %}" alt=""></a>
+                <a href="{% url 'modifier-profile' %}"><img src="" alt="bomm"></a>
             </div>
     
             <div class="dropdown">
@@ -22,7 +22,8 @@
                 <ul class="dropdown-menu dropdown-menu-dark">
                  
                   {% if request.user.is_authenticated %}
-                  <li><a class="dropdown-item active" href="">Profile</a></li>
+                  <li><a class="dropdown-item active" href="{% url 'profile' user.id %}">Profile</a></li>
+                  <li><a class="dropdown-item " href="">Parametre</a></li>
                   <li><a class="dropdown-item" href="{% url 'logout-user' %}">Deconnexion</a></li>
                   {% else %}
                   <li><a class="dropdown-item" href="{% url 'login' %}">Se connecter</a></li>

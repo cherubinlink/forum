@@ -28,17 +28,18 @@
           <form class="form" action="" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
   
-            
+            {% for field in form %}
             <div class="form__group">
-              <label for="profile_pic"></label>
-              
+              <label for="profile_pic">{{field.label}}</label>
+              {{field}}
             </div>
+            {% endfor %}
             
             
   
   
             <div class="form__action">
-              <a class="btn btn--dark" href="index.html">Anuller</a>
+              <a class="btn btn--dark" href="{% url 'profile' user.id %}">Anuller</a>
               <button class="btn btn--main" type="submit">Modifier</button>
             </div>
           </form>

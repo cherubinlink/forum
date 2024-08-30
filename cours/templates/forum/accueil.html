@@ -20,17 +20,17 @@
     
     <div class="topics">
       <div class="topics__header">
-          <h2>Parcourir vos sujects</h2>
+          <h3 class="text-dark">Parcourir vos sujects</h3>
       </div>
       <ul class="topics__list">
           <li>
-              <a href="{% url 'accueil' %}" class="active">Tous <span></span></a>
+              <a href="{% url 'accueil' %}" class="active">Sujects <span>{{suject.count}}</span></a>
           </li>
-         
+         {% for suj in suject %}
           <li>
-              <a href=""><span></span></a>
+            <a href="{% url 'accueil' %}?q={{suj.noms_suj}}">{{suj.noms_suj}}<span>{{suj.document_set.all.count}}</span></a>
           </li>
-          
+          {% endfor %}
   
       </ul>
       <a class="btn btn--link" href="">
@@ -40,7 +40,55 @@
               <path d="M16 21l-13-13h-3l16 16 16-16h-3l-13 13z"></path>
           </svg>
       </a>
+      <hr>
+
+      <div class="topics__header">
+        <h3 class="text-dark">Parcourir les groupes</h3>
+    </div>
+    <ul class="topics__list">
+        <li>
+            <a href="{% url 'accueil' %}" class="active">Groups <span></span></a>
+        </li>
+       
+        <li>
+            <a href=""><span></span></a>
+        </li>
+        
+
+    </ul>
+    <a class="btn btn--link" href="">
+        Voir plus
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+            <title>voir plus</title>
+            <path d="M16 21l-13-13h-3l16 16 16-16h-3l-13 13z"></path>
+        </svg>
+    </a>
+
+    <hr>
+
+    <div class="topics__header">
+      <h3 class="text-dark">Parcourir mes groupes</h3>
   </div>
+  <ul class="topics__list">
+      <li>
+          <a href="{% url 'accueil' %}" class="active">Mes groups <span></span></a>
+      </li>
+     
+      <li>
+          <a href=""><span></span></a>
+      </li>
+      
+
+  </ul>
+  <a class="btn btn--link" href="">
+      Voir plus
+      <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+          <title>voir plus</title>
+          <path d="M16 21l-13-13h-3l16 16 16-16h-3l-13 13z"></path>
+      </svg>
+  </a>
+  </div>
+  
     <!-- Topics End -->
 
     <!-- Room List Start -->
@@ -66,7 +114,13 @@
       <div class="roomList__header">
         <div>
           <h2>Salles d'etude</h2>
-         
+          {% if document_count == 0 %}
+          <p class="text-dark">{{document_count}} document disponible</p>
+          {% elif document_count == 1 %}
+          <p class="text-dark">{{document_count}} document disponible</p>
+          {% else %}
+          <p class="text-dark">{{document_count}} documents disponibles</p>
+          {% endif %}
         </div>
 
         <a class="btn btn--main" href="">

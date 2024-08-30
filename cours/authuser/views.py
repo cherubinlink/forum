@@ -4,6 +4,9 @@ from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.hashers import check_password, make_password, identify_hasher
+from forum.models import Suject
+from django.contrib.auth.decorators import login_required
+from.forms import UserForm
 
 
 # Create your views here.
@@ -73,10 +76,33 @@ def logout_user(request):
 
 
 # profile
-def profile(request):
-    return render(request,'authuser/profile.html')
+def profile(request,pk):
+    user = User.objects.get(id=pk)
+    document = user.document_set.all()
+    message = user.message_set.all()
+    suject = Suject.objects.all()
+    context = {
+        'user':user,
+        'document':document,
+        'message':message,
+        'suject':suject
+    }
+    return render(request,'authuser/profile.html',context)
 
 
 # modifier le profile
+@login_required(login_url='login')
 def modifier_profile(request):
-    return render(request,'authuser/modifier_profile.html')
+    user = request.user
+    
+    if request.method == 'POST':
+        form = UserForm(request.POST, instance=user)
+        if form.is_valid():
+            form.save()
+            return redirect('profile', pk=user.id)
+    else:
+        form = UserForm(instance=user)
+    context = {
+        'form':form
+    }
+    return render(request,'authuser/modifier_profile.html',context)

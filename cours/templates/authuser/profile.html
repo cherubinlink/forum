@@ -19,13 +19,13 @@
         </div>
         <ul class="topics__list">
           <li>
-              <a href="" class="active">Tous <span></span></a>
+              <a href="{% url 'accueil' %}" class="active">Tous <span>{{suject.count}}</span></a>
           </li>
-          
+          {% for suj in suject %}
           <li>
-              <a href=""><span></span></a>
+              <a href="{% url 'accueil' %}?q={{suj.noms_suj}}">{{suj.noms_suj}}<span>{{suj.document_set.all.count}}</span></a>
           </li>
-          
+          {% endfor %}
   
       </ul>
         <a class="btn btn--link" href="">
@@ -43,20 +43,20 @@
         <div class="profile">
           <div class="profile__avatar">
             <div class="avatar avatar--large active">
-              <img src="{% static 'images/avatar.png' %}" />
+              <img src="" />
             </div>
           </div>
           <div class="profile__info">
             <h3>{{user.username}}</h3>
             <p>@{{user.username}}</p>
             
-            <a href="" class="btn btn--main btn--pill">Modifier Profile</a>
+            <a href="{% url 'modifier-profile' %}" class="btn btn--main btn--pill">Modifier Profile</a>
             
           </div>
           <div class="profile__about">
             <h3>A propos</h3>
             <p>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magnam, adipisci.
+             {{user.bio}}
             </p>
           </div>
         </div>

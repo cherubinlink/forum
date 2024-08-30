@@ -15,7 +15,7 @@ urlpatterns = [
     path('delete',views.delete,name='delete'),
     
     # document
-    path('document',views.document,name='document'),
+    path('document/<int:pk>/',views.document,name='document'),
     
     # modifier document
     path('modifier_document',views.modifier_document,name='modifier-document'),
