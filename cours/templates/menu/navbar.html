@@ -11,9 +11,15 @@
             </div>
         </form>
         <div class="create">
+            {% if user.avatar %}
+            <div class="profile-photo">
+                <a href="{% url 'modifier-profile' %}"><img src="{{user.avatar.url}}" alt="bomm"></a>
+            </div>
+            {% else %}
             <div class="profile-photo">
                 <a href="{% url 'modifier-profile' %}"><img src="" alt="bomm"></a>
             </div>
+            {% endif %}
     
             <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">

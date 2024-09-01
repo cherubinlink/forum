@@ -27,13 +27,13 @@
         <div class="layout__body">
           <form class="form" action="" method="POST">
            
-  
+            {% csrf_token %}
             
   
   
             <div class="form__group">
               
-              
+              {{form}}
             </div>
   
            

@@ -2,7 +2,7 @@
 
 {% load static %}
 
-{% block title %}creer doc{% endblock %}
+{% block title %}creer document{% endblock %}
 
 {% block content %}
 {% include 'menu/navbar.html' %}
@@ -26,16 +26,16 @@
         </div>
         <div class="layout__body">
           <form class="form" action="" method="POST">
-           
+           {% csrf_token %}
   
              <div class="form__group">
               <label for="room_topic">Entrer un suject</label>
               <input required type="text" value="" name="suject" list="topic-list" />
               <datalist id="topic-list">
                 <select id="room_topic">
-                  
-                  <option value=""></option>
-                 
+                  {% for suj in sujects %}
+                  <option value="{{suj.noms_suj}}">{{suj.noms_suj}}</option>
+                 {% endfor %}
                 </select>
               </datalist>
             </div>
@@ -43,12 +43,12 @@
   
             <div class="form__group">
               <label for="room_name">Noms</label>
-              
+              {{form.noms_doc}}
             </div>
   
              <div class="form__group">
               <label for="room_description"> Description</label>
-              
+              {{form.description}}
             </div>
   
            

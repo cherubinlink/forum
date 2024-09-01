@@ -33,7 +33,7 @@
           {% endfor %}
   
       </ul>
-      <a class="btn btn--link" href="">
+      <a class="btn btn--link" href="{% url 'suject' %}">
           Voir plus
           <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
               <title>voir plus</title>
@@ -43,7 +43,7 @@
       <hr>
 
       <div class="topics__header">
-        <h3 class="text-dark">Parcourir les groupes</h3>
+        <h3 class="text-dark">Groupes</h3>
     </div>
     <ul class="topics__list">
         <li>
@@ -67,7 +67,7 @@
     <hr>
 
     <div class="topics__header">
-      <h3 class="text-dark">Parcourir mes groupes</h3>
+      <h3 class="text-dark">Mes groupes</h3>
   </div>
   <ul class="topics__list">
       <li>
@@ -123,7 +123,7 @@
           {% endif %}
         </div>
 
-        <a class="btn btn--main" href="">
+        <a class="btn btn--main" href="{% url 'creer-document' %}">
           <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
             <title>add</title>
             <path
@@ -150,22 +150,23 @@
           <h2>Activites Recents</h2>
       </div>
       <!-- messages-->
+      {% for mes in message %}
       <div class="activities__box">
           <div class="activities__boxHeader roomListRoom__header">
-              <a href="" class="roomListRoom__author">
+              <a href="{% url 'profile' mes.user.id %}" class="roomListRoom__author">
                   <div class="avatar avatar--small">
                       <img src="{% static 'images/avatar.png' %}" />
                   </div>
                   <p>
                       
-                      <span> </span>
-                      
+                    <span>{{mes.creer_message|timesince}} </span>
+                    {{mes.user.username}}
                   </p>
               </a>
   
               
               <div class="roomListRoom__actions">
-                
+                {% if request.user == mes.user %}
                   <a href="">
                       <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
                           <title>supprimer</title>
@@ -174,16 +175,18 @@
                           </path>
                       </svg>
                   </a>
+                  {% endif %}
                  
               </div>
               
   
           </div>
           <div class="activities__boxContent">
-              <p>A repondue a <a href="">”</a>”</p>
-              <div class="activities__boxRoomContent"></div>
+              <p>A repondue a <a href="{% url 'document' mes.document.id %}">{{mes.document.noms_doc}}”</a>”</p>
+              <div class="activities__boxRoomContent">{{mes.corp}}</div>
           </div>
       </div>
+      {% endfor %}
       
       
   

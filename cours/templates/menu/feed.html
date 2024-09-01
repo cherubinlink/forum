@@ -44,8 +44,8 @@
         <p class="roomListRoom__topic">{{doc.suject.noms_suj}}</p>
     </div>
     {% if doc.auteur == request.user %}
-    <a href=""><i class="fa-regular fa-pen-to-square"></i></a>
-    <a href=""><i class="fa-solid fa-trash"></i></a>
+    <a href="{% url 'modifier-document' doc.id %}"><i class="fa-regular fa-pen-to-square"></i></a>
+    <a href="{% url 'delete' doc.id %}"><i class="fa-solid fa-trash"></i></a>
     {% endif %}
 </div>
 {% endfor %}
