@@ -23,9 +23,16 @@ class Suject(models.Model):
         return self.noms_suj
 
 
-class GroupAdmin(models.Model):
+class GroupMenbre(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     group = models.ForeignKey(Group, on_delete=models.CASCADE)
+    est_admin = models.BooleanField(default=False)
+    
+    class Meta:
+        unique_together = ('user', 'group')  # Un utilisateur ne peut pas rejoindre le même groupe plusieurs fois
+        
+    def __str__(self):
+        return f"{self.user.username} in {self.group.noms_group} (Admin: {self.est_admin})"
     
 
 class Document(models.Model):

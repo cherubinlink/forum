@@ -20,7 +20,19 @@ urlpatterns = [
     # modifier document
     path('modifier_document/<int:pk>/',views.modifier_document,name='modifier-document'),
     
+    # supprimer un message
+    path('delete_message/<int:pk>/',views.delete_message,name='delete-message'),
+    
     # suject
     path('suject',views.suject,name='suject'),
+    
+    
+    # group
+    path('group',views.group,name='group'),
+    
+    # creer un group
+    path('creer_group',views.creer_group,name='creer-group'),
+    
+    
     
 ]

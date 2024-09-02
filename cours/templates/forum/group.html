@@ -2,7 +2,7 @@
 
 {% load static %}
 
-{% block title %}Accueil{% endblock %}
+{% block title %}grroup{% endblock %}
 
 {% block content %}
 
@@ -40,67 +40,36 @@
               <path d="M16 21l-13-13h-3l16 16 16-16h-3l-13 13z"></path>
           </svg>
       </a>
-      <hr>
 
+      <hr>
       <div class="topics__header">
-        <h3 class="text-dark">Groupes</h3>
+        <h3 class="text-dark">Menbres</h3>
     </div>
     <ul class="topics__list">
         <li>
-            <a href="{% url 'creer-group' %}" class="active">Groups 
-              <span class="btn btn--link">
-                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 32 32">
-                  <title>creer un group</title>
-                  <path
-                    d="M16.943 0.943h-1.885v14.115h-14.115v1.885h14.115v14.115h1.885v-14.115h14.115v-1.885h-14.115v-14.115z">
-                  </path>
-                </svg>
-              </span>
-            </a>
+            <a href="{% url 'accueil' %}" class="active">Menbre <span>{{suject.count}}</span></a>
         </li>
-       {% for group in group %}
+       {% for suj in suject %}
         <li>
-            <a href="{% url 'group' %}">{{group.noms_group}}
-              <span>
-                rejoindre
-              </span>
-            </a>
+          <a href="{% url 'accueil' %}?q={{suj.noms_suj}}">administrateur<span>{{suj.document_set.all.count}}</span></a>
         </li>
         {% endfor %}
-        
 
     </ul>
-    <a class="btn btn--link" href="">
-        Voir plus
+    <a class="btn btn--link" href="{% url 'suject' %}">
+        Quitter le group
         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
-            <title>voir plus</title>
-            <path d="M16 21l-13-13h-3l16 16 16-16h-3l-13 13z"></path>
+            <title>quiiter</title>
+            
         </svg>
     </a>
-
-    <hr>
-
-    <div class="topics__header">
-      <h3 class="text-dark">Mes groupes</h3>
-  </div>
-  <ul class="topics__list">
-      <li>
-          <a href="{% url 'accueil' %}" class="active">Mes groups <span></span></a>
-      </li>
-     
-      <li>
-          <a href=""><span></span></a>
-      </li>
+    
       
 
-  </ul>
-  <a class="btn btn--link" href="">
-      Voir plus
-      <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
-          <title>voir plus</title>
-          <path d="M16 21l-13-13h-3l16 16 16-16h-3l-13 13z"></path>
-      </svg>
-  </a>
+
+    
+  
+  
   </div>
   
     <!-- Topics End -->
@@ -122,8 +91,6 @@
         <div class="mobile-menuItems">
           <a class="btn btn--main btn--pill" href="{% url 'suject' %}">Sujects</a>
           <a class="btn btn--main btn--pill" href="{% url 'activite' %}">Activites Recents</a>
-          <a class="btn btn--main btn--pill" href="">Group</a>
-          <a class="btn btn--main btn--pill" href="">Mes groups</a>
         </div>
       </div>
 
@@ -141,7 +108,7 @@
 
         <a class="btn btn--main" href="{% url 'creer-document' %}">
           <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
-            <title>creer un document</title>
+            <title>add</title>
             <path
               d="M16.943 0.943h-1.885v14.115h-14.115v1.885h14.115v14.115h1.885v-14.115h14.115v-1.885h-14.115v-14.115z">
             </path>

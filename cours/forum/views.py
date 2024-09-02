@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .models import Suject,Document,Group,GroupAdmin,Message
+from .models import Suject,Document,Group,GroupMenbre,Message
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from .forms import DocumentForm
@@ -17,6 +17,7 @@ def accueil(request):
     )
     
     document_count = document.count()
+    group = Group.objects.all().order_by('-date_creer')[0:4]
     
     message = Message.objects.filter(
         Q(document__suject__noms_suj__icontains=q)
@@ -26,13 +27,19 @@ def accueil(request):
         'suject':suject,
         'document':document,
         'document_count':document_count,
-        'message':message
+        'message':message,
+        'group':group
     }
     return render(request,'forum/accueil.html',context)
 
 # zomme activite
 def activite(request):
-    return render(request,'forum/activite.html')
+    message = Message.objects.all()
+    
+    context = {
+        'message':message
+    }
+    return render(request,'forum/activite.html',context)
 
 
 # document
@@ -116,6 +123,20 @@ def delete(request,pk):
     return render(request,'forum/delete.html',context)
 
 
+# supprimer un message
+def delete_message(request,pk):
+    message = Message.objects.get(id=pk)
+    
+    if request.method == 'POST':
+        message.delete()
+        return redirect('accueil')
+    
+    context = {
+        'obj':message
+    }
+    return render(request,'forum/delete.html',context)
+
+
 
 # suject
 def suject(request):
@@ -131,4 +152,27 @@ def suject(request):
         context['message'] = "Aucun suject trouver pour votre recherche"
         
     return render(request,'forum/suject.html',context)
+
+
+# group
+def group(request):
+    return render(request,'forum/group.html')
+
+
+def creer_group(request):
+    if request.method =='POST':
+        noms_group = request.POST.get('noms_group')
+        description = request.POST.get('description')
+        
+        if noms_group:
+            group, created = Group.objects.get_or_create(noms_group=noms_group, defaults={'description':description})
+            
+            if created:
+                return redirect('accueil')
+            else:
+                context = {
+                    'error':'ce group exite deja'
+                }
+                return render(request,'forum/creer_group.html',context)
+    return render(request,'forum/creer_group.html')
 
