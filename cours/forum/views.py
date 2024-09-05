@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
 from .models import Suject,Document,Group,GroupMenbre,Message
+from authuser.models import User
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from .forms import DocumentForm
@@ -19,11 +20,13 @@ def accueil(request):
     document_count = document.count()
     group = Group.objects.all().order_by('-date_creer')[0:4]
     
+    
     message = Message.objects.filter(
         Q(document__suject__noms_suj__icontains=q)
     ).order_by('-creer_message', '-modifier_message')
     
     context = {
+        
         'suject':suject,
         'document':document,
         'document_count':document_count,
@@ -154,25 +157,10 @@ def suject(request):
     return render(request,'forum/suject.html',context)
 
 
-# group
-def group(request):
-    return render(request,'forum/group.html')
 
 
-def creer_group(request):
-    if request.method =='POST':
-        noms_group = request.POST.get('noms_group')
-        description = request.POST.get('description')
-        
-        if noms_group:
-            group, created = Group.objects.get_or_create(noms_group=noms_group, defaults={'description':description})
-            
-            if created:
-                return redirect('accueil')
-            else:
-                context = {
-                    'error':'ce group exite deja'
-                }
-                return render(request,'forum/creer_group.html',context)
-    return render(request,'forum/creer_group.html')
+
+
+
+
 

@@ -10,6 +10,7 @@
                 <input type="text" name="q" placeholder="recherche un suject ...">
             </div>
         </form>
+        
         <div class="create">
             {% if user.avatar %}
             <div class="profile-photo">
@@ -17,7 +18,7 @@
             </div>
             {% else %}
             <div class="profile-photo">
-                <a href="{% url 'modifier-profile' %}"><img src="" alt="bomm"></a>
+                <a href="{% url 'modifier-profile' %}"><!-- image profile--></a>
             </div>
             {% endif %}
     
@@ -25,6 +26,7 @@
                 <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                   {{request.user.username}}
                 </button>
+            
                 <ul class="dropdown-menu dropdown-menu-dark">
                  
                   {% if request.user.is_authenticated %}
@@ -35,11 +37,14 @@
                   <li><a class="dropdown-item" href="{% url 'login' %}">Se connecter</a></li>
                   <li><a class="dropdown-item" href="{% url 'register' %}">Inscription</a></li>
                   {% endif %}
+                 
                   
     
                 </ul>
+                
               </div>
         </div>
+        
     </div>
        
     </nav>

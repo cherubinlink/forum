@@ -43,7 +43,7 @@
         <div class="profile">
           <div class="profile__avatar">
             <div class="avatar avatar--large active">
-              <img src="" />
+             <!-- image profile-->
             </div>
           </div>
           <div class="profile__info">
@@ -54,7 +54,7 @@
             {% endif %}
           </div>
           <div class="profile__about">
-            <h3>A propos</h3>
+            <h3 class="text-dark">A propos</h3>
             <p>
              {{user.bio}}
             </p>
@@ -63,7 +63,7 @@
   
         <div class="roomList__header">
           <div>
-            <h2>salle d'etude de {{user.username}}</a>
+            <h2 class="text-dark">Document publier par  {{user.username}}</a>
             </h2>
           </div>
         </div>
@@ -84,24 +84,24 @@
         <div class="activities__header">
             <h2>Activites Recents</h2>
         </div>
-        
+        {% for mes in message %}
         <div class="activities__box">
             <div class="activities__boxHeader roomListRoom__header">
                 <a href="" class="roomListRoom__author">
                     <div class="avatar avatar--small">
-                        <img src="{% static 'images/avatar.png' %}" />
+                        <!-- image profile-->
                     </div>
                     <p>
                         
-                        <span> </span>
-                        
+                        <span>{{mes.creer_message|timesince}} </span>
+                        {{mes.user.username}}
                     </p>
                 </a>
     
                 
                 <div class="roomListRoom__actions">
-                  
-                    <a href="">
+                  {% if request.user == mes.user %}
+                    <a href="{% url 'delete-message' mes.id %}">
                         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
                             <title>supprimer</title>
                             <path
@@ -109,16 +109,17 @@
                             </path>
                         </svg>
                     </a>
-                    
+                    {% endif %}
                 </div>
                 
     
             </div>
             <div class="activities__boxContent">
-                <p>A repondue a ”<a href=""></a>”</p>
-                <div class="activities__boxRoomContent"></div>
+                <p>A repondue au document ”<a href="{% url 'document' mes.document.id %}">{{mes.document.noms_doc}}</a>”</p>
+                <div class="activities__boxRoomContent">{{mes.corp}}</div>
             </div>
         </div>
+        {% endfor %}
         
         
     

@@ -29,7 +29,7 @@
           </div>
           {% if document.auteur == request.user %}
           <div class="room__topRight">
-            <a href="">
+            <a href="{% url 'modifier-document' document.id %}">
               <svg enable-background="new 0 0 24 24" height="32" viewBox="0 0 24 24" width="32"
                 xmlns="http://www.w3.org/2000/svg">
                 <title>modifier</title>
@@ -48,7 +48,7 @@
                 </g>
               </svg>
             </a>
-            <a href="">
+            <a href="{% url 'delete' document.id %}">
               <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
                 <title>supprimer</title>
                 <path
@@ -72,7 +72,7 @@
               <p>Hebeger par</p>
               <a href="" class="room__author">
                 <div class="avatar avatar--small">
-                  <img src="{% static 'images/avatar.png' %}" />
+                   <!-- image profile -->
                 </div>
                 <span>@{{document.auteur.username}}</span>
               </a>
@@ -93,7 +93,7 @@
                   <div class="thread__author">
                     <a href="" class="thread__authorInfo">
                       <div class="avatar avatar--small">
-                        <img src="{% static 'images/avatar.png' %}" />
+                         <!-- image profile  -->
                       </div>
                       <span>@{{mes.user.username}}</span>
                     </a>
@@ -144,7 +144,7 @@
           {% for part in participant %}
           <a href="" class="participant">
             <div class="avatar avatar--medium">
-              <img src="{% static 'images/avatar.png' %}" />
+               <!-- image profile -->
             </div>
             <p>
              

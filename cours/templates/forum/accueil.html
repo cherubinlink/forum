@@ -42,65 +42,10 @@
       </a>
       <hr>
 
-      <div class="topics__header">
-        <h3 class="text-dark">Groupes</h3>
-    </div>
-    <ul class="topics__list">
-        <li>
-            <a href="{% url 'creer-group' %}" class="active">Groups 
-              <span class="btn btn--link">
-                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 32 32">
-                  <title>creer un group</title>
-                  <path
-                    d="M16.943 0.943h-1.885v14.115h-14.115v1.885h14.115v14.115h1.885v-14.115h14.115v-1.885h-14.115v-14.115z">
-                  </path>
-                </svg>
-              </span>
-            </a>
-        </li>
-       {% for group in group %}
-        <li>
-            <a href="{% url 'group' %}">{{group.noms_group}}
-              <span>
-                rejoindre
-              </span>
-            </a>
-        </li>
-        {% endfor %}
-        
-
-    </ul>
-    <a class="btn btn--link" href="">
-        Voir plus
-        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
-            <title>voir plus</title>
-            <path d="M16 21l-13-13h-3l16 16 16-16h-3l-13 13z"></path>
-        </svg>
-    </a>
-
-    <hr>
-
-    <div class="topics__header">
-      <h3 class="text-dark">Mes groupes</h3>
-  </div>
-  <ul class="topics__list">
-      <li>
-          <a href="{% url 'accueil' %}" class="active">Mes groups <span></span></a>
-      </li>
      
-      <li>
-          <a href=""><span></span></a>
-      </li>
-      
+   
 
-  </ul>
-  <a class="btn btn--link" href="">
-      Voir plus
-      <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
-          <title>voir plus</title>
-          <path d="M16 21l-13-13h-3l16 16 16-16h-3l-13 13z"></path>
-      </svg>
-  </a>
+   
   </div>
   
     <!-- Topics End -->
@@ -171,7 +116,7 @@
           <div class="activities__boxHeader roomListRoom__header">
               <a href="{% url 'profile' mes.user.id %}" class="roomListRoom__author">
                   <div class="avatar avatar--small">
-                      <img src="{% static 'images/avatar.png' %}" />
+                      <!-- image profile-->
                   </div>
                   <p>
                       

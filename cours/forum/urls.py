@@ -27,11 +27,9 @@ urlpatterns = [
     path('suject',views.suject,name='suject'),
     
     
-    # group
-    path('group',views.group,name='group'),
+
     
-    # creer un group
-    path('creer_group',views.creer_group,name='creer-group'),
+
     
     
     
