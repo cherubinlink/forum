@@ -46,6 +46,7 @@ def activite(request):
 
 
 # document
+@login_required(login_url='login')
 def document(request, pk):
     document = Document.objects.get(id=pk)
     message = document.message_set.all().order_by('-creer_message')
@@ -67,6 +68,7 @@ def document(request, pk):
     return render(request,'forum/document.html',context)
 
 # creer un document
+@login_required(login_url='login')
 def creer_document(request):
     sujects = Suject.objects.all()
     
@@ -95,6 +97,7 @@ def creer_document(request):
 
 
 # mdifier un document
+@login_required(login_url='login')
 def modifier_document(request,pk):
     document = Document.objects.get(id=pk)
     suject = Suject.objects.all()
@@ -115,6 +118,7 @@ def modifier_document(request,pk):
 
 
 # supprimer un document
+@login_required(login_url='login')
 def delete(request,pk):
     document = Document.objects.get(id=pk)
     if request.method == 'POST':
@@ -127,6 +131,7 @@ def delete(request,pk):
 
 
 # supprimer un message
+@login_required(login_url='login')
 def delete_message(request,pk):
     message = Message.objects.get(id=pk)
     

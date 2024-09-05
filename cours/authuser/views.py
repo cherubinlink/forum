@@ -76,6 +76,7 @@ def logout_user(request):
 
 
 # profile
+@login_required(login_url='login')
 def profile(request,pk):
     user = User.objects.get(id=pk)
     document = user.document_set.all()
