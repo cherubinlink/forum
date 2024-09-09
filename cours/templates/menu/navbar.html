@@ -31,7 +31,6 @@
                  
                   {% if request.user.is_authenticated %}
                   <li><a class="dropdown-item active" href="{% url 'profile' user.id %}">Profile</a></li>
-                  <li><a class="dropdown-item " href="">Parametre</a></li>
                   <li><a class="dropdown-item" href="{% url 'logout-user' %}">Deconnexion</a></li>
                   {% else %}
                   <li><a class="dropdown-item" href="{% url 'login' %}">Se connecter</a></li>

@@ -66,15 +66,14 @@
         </form>
         <div class="mobile-menuItems">
           <a class="btn btn--main btn--pill" href="{% url 'suject' %}">Sujects</a>
-          <a class="btn btn--main btn--pill" href="{% url 'activite' %}">Activites Recents</a>
-          <a class="btn btn--main btn--pill" href="">Group</a>
-          <a class="btn btn--main btn--pill" href="">Mes groups</a>
+          <a class="btn btn--main btn--pill" href="{% url 'activite' %}">Activites Recentes</a>
+
         </div>
       </div>
 
       <div class="roomList__header">
         <div>
-          <h2>Salles d'etude</h2>
+          <h2>Discutions</h2>
           {% if document_count == 0 %}
           <p class="text-dark">{{document_count}} document disponible</p>
           {% elif document_count == 1 %}
@@ -108,7 +107,7 @@
     
     <div class="activities">
       <div class="activities__header">
-          <h2>Activites Recents</h2>
+          <h2>Activites Recentes</h2>
       </div>
       <!-- messages-->
       {% for mes in message %}

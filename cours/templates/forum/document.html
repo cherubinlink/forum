@@ -70,7 +70,7 @@
             </div>
             <div class="room__hosted">
               <p>Hebeger par</p>
-              <a href="" class="room__author">
+              <a href="{% url 'profile' document.auteur.id %}" class="room__author">
                 <div class="avatar avatar--small">
                    <!-- image profile -->
                 </div>
@@ -139,7 +139,18 @@
   
       <!--   Start -->
       <div class="participants">
-        <h3 class="participants__top">Participants <span>({{participant.all.count}})</span></h3>
+        <h3 class="participants__top">
+          {% if participant.all.count == 0 %}
+          Participant
+          {% elif participant.all.count == 1 %}
+          Participant
+          {% else %}
+          Participants
+          {% endif %}
+          <span>
+          ({{participant.all.count}})
+        </span>
+        </h3>
         <div class="participants__list scroll">
           {% for part in participant %}
           <a href="" class="participant">
